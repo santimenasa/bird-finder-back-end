@@ -17,7 +17,7 @@ const birdSchema = new Schema(
       require: true
     },
     dateOfCatch: {
-      type: Number,
+      type: Date,
       require: true
     },
     catchYourSelf: {
@@ -31,4 +31,4 @@ const birdSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Bird",birdSchema ); // se va a guardar como books
+module.exports = mongoose.model("Bird",birdSchema ); 

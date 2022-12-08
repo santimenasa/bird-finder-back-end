@@ -4,21 +4,23 @@ const app = express();
 require("dotenv").config();
 const connectDB = require("./config/db");
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require('cors');
+const router = require("./routes/bird-routes");
 const port = process.env.PORT || 3000;
 
-
+//config DB
 connectDB()
 
 //middlewares
 app.use(express.json())
 app.use(cors())
+app.use('/birds', router)
+//routes
 
-//config DB and server
 
-  app.get('/', (req, res) => {
-  res.send('pajaritoh en el aire')
-})
+//config server
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`.green)

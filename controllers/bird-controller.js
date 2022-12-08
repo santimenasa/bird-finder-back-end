@@ -1,10 +1,10 @@
-const bird = require('../models/bird')
+const Bird = require('../models/bird')
 
-const addBook = async (req,res) => {
+const addBird = async (req,res) => {
     const {species, gender, description, dateOfCatch, catchYourSelf, image} = req.body;
     let bird;
     try {
-        bird = new bird({
+        bird = new Bird({
           species,
           gender,
           description,
@@ -22,3 +22,5 @@ const addBook = async (req,res) => {
     }
     return res.status(201).json({ bird })
 }
+
+module.exports = { addBird }

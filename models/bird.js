@@ -31,4 +31,4 @@ const birdSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Book", bookSchema); // se va a guardar como books
+module.exports = mongoose.model("Bird",birdSchema ); // se va a guardar como books

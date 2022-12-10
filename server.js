@@ -15,7 +15,6 @@ connectDB()
 app.use(express.json())
 app.use(cors())
 app.use('/birds', router)
-//routes
 
 
 //config server

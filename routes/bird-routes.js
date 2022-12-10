@@ -6,5 +6,8 @@ const birdController = require('../controllers/bird-controller')
 
 
 router.post('/', birdController.addBird)
+router.get('/', birdController.getBirds)
+
+
 
 module.exports = router

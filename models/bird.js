@@ -12,12 +12,13 @@ const birdSchema = new Schema(
       type: String,
       require: true
     },
-    description: {
+    location: {
       type: String,
       require: true
     },
     dateOfCatch: {
       type: Date,
+      default:Date.now,
       require: true
     },
     catchYourSelf: {

@@ -2,20 +2,34 @@ const Bird = require('../models/bird')
 
 
 
+ //get bird by ID
+ const getBirdById = async(req,res) => {
+    const id = req.params.id
+    let bird;
+    try {
+        bird = await Bird.findById(id)
+    } catch (error) {
+        console.log(error);
+    }
 
+    if (!bird) {
+        return res.status(404).json( {message: "cant find that bird"} )
+    }
+   res.status(200).json( { bird } )
+} 
 
 
 
 
 //create a bird
 const addBird = async (req,res) => {
-    const {species, gender, description, dateOfCatch, catchYourSelf, image} = req.body;
+    const {species, gender, location, dateOfCatch, catchYourSelf, image} = req.body;
     let bird;
     try {
         bird = new Bird({
           species,
           gender,
-          description,
+          location,
           dateOfCatch,
           catchYourSelf,
           image,
@@ -46,25 +60,48 @@ const getBirds = async (req,res) => {
     if (!birds) {
       return  res.status(404).json ( {message:"There are no birds in our data base"} )
     }
-     return   res.status(200).json({ birds })
+     return   res.status(202).json({ birds })
     
 }
 
+const updateBird = async(req,res) => {
+    const id = req.params.id
+    const {species, gender, location, dateOfCatch, catchYourSelf, image} = req.body;
+let bird;
+try {
+    bird = await Bird.findByIdAndUpdate(id,{
+        species,
+        gender,
+        location,
+        dateOfCatch,
+        catchYourSelf,
+        image
+    })
+    bird = await Bird.save()
+} catch (error) {
+    console.log(error);
+}
+if (!bird) {
+    return  res.status(404).json ( {message:"Could`t get that bird"} )
+  }
+   return   res.status(200).json({ bird })
+}
 
-/* //get bird by ID
-const getBirdById = async(req,res) => {
+const deleteBird = async(req,res) => {
+    const id = req.params.id
     let bird;
     try {
-        bird = await Bird.findById(req.params.id)
+        bird = await Bird.findByIdAndDelete(id)
+      
     } catch (error) {
         console.log(error);
     }
-
     if (!bird) {
-        return res.status(404).json( {message: "cant find that bird"} )
+       return res.status(404).json({message: "could`t find that bird"})
     }
-    return res.status(200).json( { bird } )
-} */
+    return res.status(202).json({ bird })
+}
 
 
-module.exports = { addBird, getBirds }
+
+module.exports = { addBird, getBirds, getBirdById, updateBird, deleteBird }

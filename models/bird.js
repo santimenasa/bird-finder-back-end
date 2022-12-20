@@ -21,8 +21,8 @@ const birdSchema = new Schema(
       default:Date.now,
       require: true
     },
-    catchYourSelf: {
-      type: Boolean
+    catchBy: {
+      type: String,
     },
     image: {
       type: String,

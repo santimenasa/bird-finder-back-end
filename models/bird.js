@@ -23,6 +23,7 @@ const birdSchema = new Schema(
     },
     catchBy: {
       type: String,
+      require:true,
     },
     image: {
       type: String,

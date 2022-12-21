@@ -21,7 +21,7 @@ const birdSchema = new Schema(
       default:Date.now,
       require: true
     },
-    catchBy: {
+    authorName: {
       type: String,
       require:true,
     },

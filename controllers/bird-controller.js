@@ -23,7 +23,7 @@ const Bird = require('../models/bird')
 
 //create a bird
 const addBird = async (req,res) => {
-    const {species, gender, location, dateOfCatch, catchBy, image} = req.body;
+    const {species, gender, location, dateOfCatch, authorName, image} = req.body;
     let bird;
     try {
         bird = new Bird({
@@ -31,7 +31,7 @@ const addBird = async (req,res) => {
           gender,
           location,
           dateOfCatch,
-          catchBy,
+          authorName,
           image,
 
         });
@@ -66,7 +66,7 @@ const getBirds = async (req,res) => {
 
 const updateBird = async(req,res) => {
     const id = req.params.id
-    const {species, gender, location, dateOfCatch, catchBy, image} = req.body;
+    const {species, gender, location, dateOfCatch, authorName, image} = req.body;
 let bird;
 try {
     bird = await Bird.findByIdAndUpdate(id,{
@@ -74,7 +74,7 @@ try {
         gender,
         location,
         dateOfCatch,
-        catchBy,
+        authorName,
         image
     })
     bird = await Bird.save()
